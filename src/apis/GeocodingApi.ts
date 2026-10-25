@@ -32,6 +32,10 @@ export interface GeocodeRequest {
      */
     language?: string;
     /**
+     * Region bias as a ccTLD (e.g. "fr", "ca"). Overrides the region inferred from the referrer domain — useful when the referrer has no country TLD.
+     */
+    region?: string;
+    /**
      * Viewport north bound (decimal degrees).
      */
     north?: number;
@@ -95,6 +99,10 @@ export class GeocodingApi extends runtime.BaseAPI {
 
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['region'] != null) {
+            queryParameters['region'] = requestParameters['region'];
         }
 
         if (requestParameters['north'] != null) {

@@ -10,7 +10,7 @@ All URIs are relative to *https://geo.aws.bmlt.app*
 
 ## geocode
 
-> geocode(application, search, referrer, language, north, south, east, west)
+> geocode(application, search, referrer, language, region, north, south, east, west)
 
 Geocode an address or place
 
@@ -42,6 +42,8 @@ async function example() {
     referrer: referrer_example,
     // string | BCP-47 language code (default: en). (optional)
     language: language_example,
+    // string | Region bias as a ccTLD (e.g. \"fr\", \"ca\"). Overrides the region inferred from the referrer domain — useful when the referrer has no country TLD. (optional)
+    region: region_example,
     // number | Viewport north bound (decimal degrees). (optional)
     north: 3.4,
     // number | Viewport south bound (decimal degrees). (optional)
@@ -73,6 +75,7 @@ example().catch(console.error);
 | **search** | `string` | Address or place to geocode. | [Defaults to `undefined`] |
 | **referrer** | `string` | URL of the requesting page (region detection + analytics). | [Defaults to `undefined`] |
 | **language** | `string` | BCP-47 language code (default: en). | [Optional] [Defaults to `undefined`] |
+| **region** | `string` | Region bias as a ccTLD (e.g. \&quot;fr\&quot;, \&quot;ca\&quot;). Overrides the region inferred from the referrer domain — useful when the referrer has no country TLD. | [Optional] [Defaults to `undefined`] |
 | **north** | `number` | Viewport north bound (decimal degrees). | [Optional] [Defaults to `undefined`] |
 | **south** | `number` | Viewport south bound (decimal degrees). | [Optional] [Defaults to `undefined`] |
 | **east** | `number` | Viewport east bound (decimal degrees). | [Optional] [Defaults to `undefined`] |
@@ -100,6 +103,9 @@ example().catch(console.error);
 | **403** | Account not yet approved. |  -  |
 | **422** | Validation error (missing required parameters). |  -  |
 | **429** | Rate limit exceeded — see Retry-After header. |  -  |
+| **502** | Upstream geocoding service returned an invalid or error response. |  -  |
+| **503** | Upstream geocoding quota exceeded — see Retry-After header. |  -  |
+| **504** | Upstream geocoding service did not respond in time. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

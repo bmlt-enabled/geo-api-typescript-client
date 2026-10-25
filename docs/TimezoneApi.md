@@ -80,8 +80,10 @@ example().catch(console.error);
 | **200** | Timezone result (dstOffset, rawOffset, timeZoneId, timeZoneName). |  -  |
 | **401** | Missing or invalid API key. |  -  |
 | **403** | Account not yet approved. |  -  |
-| **422** | Validation error (both/neither parameter, or bad location format). |  -  |
-| **500** | Upstream Google Timezone API error. |  -  |
+| **422** | Validation error (both/neither parameter, bad location format, or no timezone data for the location). |  -  |
+| **502** | Upstream Google Timezone/Geocoding service returned an invalid or error response. |  -  |
+| **503** | Upstream quota exceeded — see Retry-After header. |  -  |
+| **504** | Upstream service did not respond in time. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
