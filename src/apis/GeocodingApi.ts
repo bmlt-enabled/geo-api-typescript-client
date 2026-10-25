@@ -13,6 +13,11 @@
  */
 
 import * as runtime from '../runtime';
+import {
+    type Geocode200Response,
+    Geocode200ResponseFromJSON,
+    Geocode200ResponseToJSON,
+} from '../models/Geocode200Response';
 
 export interface GeocodeRequest {
     /**
@@ -146,19 +151,20 @@ export class GeocodingApi extends runtime.BaseAPI {
      * Returns the Google Maps Geocoding response (served from the shared cache when available) plus `type` (\"cache\" or \"live\") and a `request` echo.
      * Geocode an address or place
      */
-    async geocodeRaw(requestParameters: GeocodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async geocodeRaw(requestParameters: GeocodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Geocode200Response>> {
         const requestOptions = await this.geocodeRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => Geocode200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Returns the Google Maps Geocoding response (served from the shared cache when available) plus `type` (\"cache\" or \"live\") and a `request` echo.
      * Geocode an address or place
      */
-    async geocode(requestParameters: GeocodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.geocodeRaw(requestParameters, initOverrides);
+    async geocode(requestParameters: GeocodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Geocode200Response> {
+        const response = await this.geocodeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

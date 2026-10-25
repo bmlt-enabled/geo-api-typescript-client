@@ -10,7 +10,7 @@ All URIs are relative to *https://geo.aws.bmlt.app*
 
 ## geocode
 
-> geocode(application, search, referrer, language, region, north, south, east, west)
+> Geocode200Response geocode(application, search, referrer, language, region, north, south, east, west)
 
 Geocode an address or place
 
@@ -83,7 +83,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**Geocode200Response**](Geocode200Response.md)
 
 ### Authorization
 
@@ -92,13 +92,13 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Geocoding result (cache or live). |  -  |
+| **200** | Geocoding result (cache or live). The body is the Google Maps Geocoding response verbatim, with &#x60;type&#x60; and &#x60;request&#x60; added by this service. &#x60;results&#x60; is an empty array when &#x60;status&#x60; is &#x60;ZERO_RESULTS&#x60;. |  -  |
 | **401** | Missing or invalid API key. |  -  |
 | **403** | Account not yet approved. |  -  |
 | **422** | Validation error (missing required parameters). |  -  |

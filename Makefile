@@ -8,7 +8,7 @@ generate: openapi.json
 	    -i openapi.json \
 	    -g typescript-fetch \
 	    -p npmName=@bmlt-enabled/geo-api-typescript-client \
-	    -p npmVersion=1.0.1 \
+	    -p npmVersion=1.0.2 \
 	    -p supportsES6=true \
 	    --git-repo-id=geo-api-typescript-client \
 	    --git-user-id=bmlt-enabled \
