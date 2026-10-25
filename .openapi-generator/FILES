@@ -1,0 +1,14 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+README.md
+docs/GeocodingApi.md
+docs/TimezoneApi.md
+package.json
+src/apis/GeocodingApi.ts
+src/apis/TimezoneApi.ts
+src/apis/index.ts
+src/index.ts
+src/runtime.ts
+tsconfig.esm.json
+tsconfig.json
